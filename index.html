@@ -3,347 +3,147 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101113">
-<title>Handloom — Shapes from your fingertips</title>
+<meta name="theme-color" content="#050b12">
+<title>HANDLOOM // Holographic Workbench</title>
 <style>
-  :root{color-scheme:dark;--bg:#101113;--panel:#191b1f;--line:#2b2e34;--ink:#f4f4f2;--muted:#a4a7ad;--accent:#c7f36b}
-  *{box-sizing:border-box}
-  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-  body{min-height:100svh}
-  button{font:inherit;cursor:pointer}
-  .app{width:min(100%,900px);margin:auto;padding:22px 16px 30px}
-  header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
-  .brand{display:flex;align-items:center;gap:11px}
-  .mark{width:38px;height:38px;border:1px solid #44484e;border-radius:12px;display:grid;place-items:center;color:var(--accent);font-size:22px}
-  h1{font-size:18px;letter-spacing:-.04em;margin:0;font-weight:650}
-  .tagline{color:var(--muted);font-size:12px;margin-top:3px}
-  .pill{border:1px solid var(--line);border-radius:99px;padding:7px 10px;font-size:11px;color:var(--muted);white-space:nowrap}
-  .intro{margin:0 0 18px}
-  .intro h2{font-size:clamp(26px,6vw,42px);line-height:1.04;letter-spacing:-.055em;margin:0 0 10px;font-weight:650}
-  .intro p{margin:0;color:var(--muted);line-height:1.55;font-size:14px;max-width:560px}
-  .stage{position:relative;overflow:hidden;background:#151619;border:1px solid #2a2c31;border-radius:22px;aspect-ratio:4/3;min-height:230px;display:grid;place-items:center}
-  #art{position:absolute;inset:0;width:100%;height:100%}
-  video{display:none}
-  .stage-empty{position:relative;z-index:1;text-align:center;padding:24px;max-width:300px}
-  .stage-empty .symbol{font-size:34px;color:var(--accent);margin-bottom:12px}
-  .stage-empty h3{font-size:16px;margin:0 0 7px}
-  .stage-empty p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
-  .stage-label{position:absolute;z-index:2;left:13px;top:13px;border:1px solid #383a40;background:#101113c9;border-radius:99px;padding:7px 10px;font-size:11px;color:#ddd}
-  .stage-label span{display:inline-block;width:6px;height:6px;border-radius:50%;background:#777;margin-right:6px}
-  .controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-  .btn{border:1px solid var(--line);border-radius:13px;padding:13px 14px;background:var(--panel);color:var(--ink);font-weight:600;font-size:13px}
-  .btn.primary{background:var(--accent);border-color:var(--accent);color:#171a11}
-  .btn:disabled{opacity:.5;cursor:wait}
-  .notice{margin-top:12px;color:var(--muted);font-size:12px;line-height:1.5;min-height:18px}
-  .section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:24px 0 11px}
-  .section-head h3{margin:0;font-size:14px;font-weight:650}
-  .section-head span{font-size:11px;color:var(--muted)}
-  .shapes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
-  .shape-btn{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 4px 10px;color:var(--ink)}
-  .shape-btn.active{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
-  .shape-btn svg{width:30px;height:30px;display:block;margin:0 auto 8px;color:var(--accent)}
-  .shape-btn b{display:block;font-size:11px;font-weight:600}
-  .shape-btn small{display:block;font-size:10px;color:var(--muted);margin-top:4px}
-  .bottom-note{border-top:1px solid var(--line);margin-top:22px;padding-top:15px;color:var(--muted);font-size:11px;line-height:1.6}
-  .bottom-note strong{color:#d8d9d5;font-weight:600}
-  @media(min-width:650px){.app{padding:30px 24px 36px}.stage{aspect-ratio:16/9}.controls{grid-template-columns:1fr 1fr}.intro{margin-bottom:22px}}
-  @media(max-width:380px){.app{padding:16px 12px 24px}.pill{font-size:10px}.shapes{gap:5px}.shape-btn{padding-top:10px}.shape-btn svg{width:26px;height:26px}}
+:root{color-scheme:dark;--bg:#050b12;--panel:rgba(8,22,34,.82);--line:rgba(92,211,255,.28);--cyan:#67e5ff;--blue:#4b8dff;--gold:#ffca72;--muted:#7294a8;--white:#e6f8ff}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}body{overflow-x:hidden}button{font:inherit;cursor:pointer;color:inherit}
+.app{max-width:1120px;margin:auto;padding:15px 14px 30px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:4px 2px 15px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px}.logo{width:34px;height:34px;border:1px solid var(--cyan);color:var(--cyan);display:grid;place-items:center;transform:rotate(45deg);font-size:18px;box-shadow:0 0 16px #32cfff20}.logo span{transform:rotate(-45deg)}.brand h1{font-size:14px;letter-spacing:.2em;margin:0;font-weight:700}.brand p{font-size:9px;letter-spacing:.15em;color:var(--muted);margin:4px 0 0}.sys{font-size:9px;letter-spacing:.12em;color:var(--cyan);text-align:right}.sys b{display:block;font-size:10px;margin-bottom:4px}.live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#71f5c2;margin-right:5px;box-shadow:0 0 8px #71f5c2}
+.hero{padding:19px 2px 15px}.eyebrow{color:var(--cyan);font-size:9px;letter-spacing:.24em;text-transform:uppercase}.hero h2{font-size:clamp(24px,5.6vw,42px);line-height:1.02;letter-spacing:-.045em;font-weight:500;margin:9px 0 8px}.hero h2 span{color:var(--cyan);text-shadow:0 0 20px #3bdfff40}.hero p{font-size:12px;line-height:1.55;color:#91adbd;margin:0;max-width:560px}
+.lab{position:relative;isolation:isolate;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 46%,#10334a 0%,#081521 42%,#050b12 80%);border-radius:15px;overflow:hidden;min-height:340px;aspect-ratio:1.12/1;box-shadow:inset 0 0 50px #1aa5db0b,0 0 35px #00b9ff08}
+#scene{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
+.corner{position:absolute;width:22px;height:22px;border-color:var(--cyan);opacity:.75;pointer-events:none}.tl{top:10px;left:10px;border-top:1px solid;border-left:1px solid}.tr{top:10px;right:10px;border-top:1px solid;border-right:1px solid}.bl{bottom:10px;left:10px;border-bottom:1px solid;border-left:1px solid}.br{bottom:10px;right:10px;border-bottom:1px solid;border-right:1px solid}
+.hud{position:absolute;pointer-events:none;font-size:8px;letter-spacing:.12em;color:#8eb9cc;line-height:1.6}.hud b{font-weight:600;color:var(--cyan)}.hud-tl{top:17px;left:18px}.hud-tr{top:17px;right:18px;text-align:right}.hud-bl{bottom:16px;left:18px}.hud-br{bottom:16px;right:18px;text-align:right}
+.center-label{position:absolute;left:50%;top:78%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;white-space:nowrap;text-shadow:0 0 12px #4adfff}.center-label strong{font-size:9px;letter-spacing:.2em;font-weight:500;color:#d5f8ff}.center-label small{display:block;font-size:8px;color:#7ca9bd;letter-spacing:.14em;margin-top:4px}
+.toolbar{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}.tool{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px 5px;font-size:10px;letter-spacing:.05em;color:#9dc1d2}.tool span{display:block;font-size:16px;color:var(--cyan);margin-bottom:4px}.tool.active{border-color:var(--cyan);color:#e9fbff;background:#0c2b3b;box-shadow:inset 0 0 14px #34d9ff0d}
+.lower{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px}.panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.panel-head h3{font-size:10px;letter-spacing:.16em;font-weight:600;margin:0;color:#c8eaf7}.panel-head small{font-size:8px;color:var(--muted);letter-spacing:.1em}
+.elements{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.element{background:#091522;border:1px solid #24475a;border-radius:8px;padding:9px 2px 8px;text-align:center;min-width:0}.element.active{border-color:var(--gold);box-shadow:0 0 12px #ffc66b15}.element .sym{font-size:19px;color:var(--gold);line-height:1.1}.element b{font-size:8px;display:block;margin-top:6px;font-weight:500;color:#c7e3ee}.element small{font-size:7px;color:#688b9f;display:block;margin-top:3px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.action{border:1px solid var(--line);background:#0a1b29;border-radius:8px;padding:11px 8px;font-size:10px;letter-spacing:.08em}.action.primary{background:var(--cyan);color:#03101a;border-color:var(--cyan);font-weight:700}.action:active,.tool:active,.element:active{transform:scale(.98)}
+.readout{display:grid;grid-template-columns:1fr 1fr;gap:8px}.readout div{border-left:1px solid var(--line);padding-left:9px}.readout small{display:block;color:var(--muted);font-size:8px;letter-spacing:.12em}.readout strong{display:block;color:var(--cyan);font-size:12px;font-weight:500;margin-top:5px}
+.footer{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;gap:12px;color:#55798c;font-size:8px;letter-spacing:.08em;line-height:1.6}.footer b{color:#89b6c8;font-weight:500}
+@media(min-width:720px){.app{padding:22px 24px 35px}.hero{padding:24px 2px 18px}.lab{aspect-ratio:1.75/1;min-height:410px}.lower{grid-template-columns:1.15fr .85fr}.elements{gap:8px}.element{padding:13px 3px}.element .sym{font-size:23px}}
+@media(max-width:360px){.app{padding:12px 9px 22px}.brand h1{font-size:12px}.sys{font-size:8px}.toolbar{gap:5px}.tool{font-size:9px}.hud{font-size:7px}.lab{min-height:300px}}
 </style>
 </head>
 <body>
 <main class="app">
-  <header>
-    <div class="brand">
-      <div class="mark" aria-hidden="true">✳</div>
-      <div><h1>Handloom</h1><div class="tagline">Shapes from your fingertips</div></div>
-    </div>
-    <div class="pill">CAMERA STAYS ON YOUR DEVICE</div>
-  </header>
+<header class="topbar">
+  <div class="brand"><div class="logo"><span>✳</span></div><div><h1>HANDLOOM</h1><p>SPATIAL CREATION SYSTEM</p></div></div>
+  <div class="sys"><b><i class="live-dot"></i>SYSTEM ONLINE</b>BUILD 02.6 // LOCAL MODE</div>
+</header>
+<section class="hero"><div class="eyebrow">Interactive matter lab / 01</div><h2>Imagine it.<br><span>Bring it into focus.</span></h2><p>A fingertip-controlled workbench for building, studying, and connecting geometric forms. Select a structure, then manipulate it on the canvas.</p></section>
 
-  <section class="intro">
-    <h2>Make a shape.<br>Leave a trace.</h2>
-    <p>Hold up your hand and let your fingers guide the canvas. Simple, quiet, and made to work in your phone browser.</p>
-  </section>
+<section class="lab" id="lab">
+  <canvas id="scene" aria-label="Interactive holographic geometry workspace"></canvas>
+  <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+  <div class="hud hud-tl">WORKSPACE <b>H-01</b><br>PROJECTION: <b>SIMULATED</b></div>
+  <div class="hud hud-tr">TRACKING <b id="trackState">TOUCH / POINTER</b><br>FRAME <b id="frameState">STABLE</b></div>
+  <div class="hud hud-bl">OBJECT <b id="objectName">TRIANGULAR LATTICE</b><br>DRAG TO MOVE · PINCH/SCROLL TO SCALE</div>
+  <div class="hud hud-br">X <b id="xVal">00.0</b><br>Y <b id="yVal">00.0</b></div>
+  <div class="center-label"><strong id="centerTitle">STRUCTURE // 03</strong><small id="centerSub">GEOMETRY READY FOR INPUT</small></div>
+</section>
 
-  <section class="stage" id="stage" aria-label="Interactive drawing canvas">
-    <canvas id="art"></canvas>
-    <div class="stage-label"><span id="status-dot"></span><span id="status">Ready when you are</span></div>
-    <div class="stage-empty" id="empty">
-      <div class="symbol">✳</div>
-      <h3>Your canvas is waiting</h3>
-      <p>Start the camera to use hand gestures, or choose a shape below to try the canvas without camera access.</p>
-    </div>
-  </section>
+<div class="toolbar" aria-label="Workbench tools">
+  <button class="tool active" data-tool="select"><span>⌖</span>SELECT</button>
+  <button class="tool" data-tool="rotate"><span>⟳</span>ROTATE</button>
+  <button class="tool" data-tool="scale"><span>⤢</span>SCALE</button>
+  <button class="tool" data-tool="connect"><span>⌁</span>CONNECT</button>
+</div>
 
-  <video id="video" playsinline muted></video>
-  <div class="controls">
-    <button class="btn primary" id="start">Enable camera</button>
-    <button class="btn" id="clear">Clear canvas</button>
+<div class="lower">
+<section class="panel">
+  <div class="panel-head"><h3>STRUCTURE LIBRARY</h3><small>SELECT AN OBJECT</small></div>
+  <div class="elements">
+    <button class="element" data-shape="atom"><div class="sym">◎</div><b>ORBITAL</b><small>FIELD 01</small></button>
+    <button class="element" data-shape="line"><div class="sym">╱</div><b>VECTOR</b><small>FIELD 02</small></button>
+    <button class="element active" data-shape="triangle"><div class="sym">△</div><b>TRIAD</b><small>FIELD 03</small></button>
+    <button class="element" data-shape="cube"><div class="sym">◇</div><b>LATTICE</b><small>FIELD 04</small></button>
+    <button class="element" data-shape="pentagon"><div class="sym">⬠</div><b>POLYGON</b><small>FIELD 05</small></button>
   </div>
-  <div class="notice" id="notice" role="status">Camera is off. Nothing is recorded or uploaded.</div>
-
-  <div class="section-head"><h3>Try a shape</h3><span>Tap to preview without camera</span></div>
-  <div class="shapes" id="shapes">
-    <button class="shape-btn" data-count="1" aria-label="Preview dot"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="5" fill="currentColor"/></svg><b>Dot</b><small>1 finger</small></button>
-    <button class="shape-btn" data-count="2" aria-label="Preview line"><svg viewBox="0 0 40 40"><path d="M7 29L33 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg><b>Line</b><small>2 fingers</small></button>
-    <button class="shape-btn" data-count="3" aria-label="Preview triangle"><svg viewBox="0 0 40 40"><path d="M20 6L35 33H5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/></svg><b>Triangle</b><small>3 fingers</small></button>
-    <button class="shape-btn" data-count="4" aria-label="Preview quadrilateral"><svg viewBox="0 0 40 40"><path d="M10 7H30L35 32H5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/></svg><b>Quad</b><small>4 fingers</small></button>
-    <button class="shape-btn" data-count="5" aria-label="Preview pentagon"><svg viewBox="0 0 40 40"><path d="M20 5L36 16L30 34H10L4 16Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/></svg><b>Pentagon</b><small>5 fingers</small></button>
+  <div class="actions"><button class="action primary" id="newObject">＋ SYNTHESIZE</button><button class="action" id="reset">↺ RESET FIELD</button></div>
+</section>
+<section class="panel">
+  <div class="panel-head"><h3>LIVE READOUT</h3><small>SIMULATED DATA</small></div>
+  <div class="readout">
+    <div><small>ACTIVE STRUCTURE</small><strong id="readShape">TRIAD / 03</strong></div>
+    <div><small>FIELD STABILITY</small><strong>99.8%</strong></div>
+    <div><small>ROTATION</small><strong id="rotationRead">000°</strong></div>
+    <div><small>SCALE FACTOR</small><strong id="scaleRead">1.00×</strong></div>
   </div>
-
-  <div class="bottom-note">
-    <strong>Gesture guide:</strong> 1 finger = dot · 2 = line · 3 = triangle · 4 = quadrilateral · 5 = pentagon · closed fist = pause.<br>
-    Camera mode uses on-device hand landmarks. For camera access, publish this page on <strong>GitHub Pages (HTTPS)</strong> and allow the browser permission prompt.
-  </div>
+</section>
+</div>
+<footer class="footer"><div><b>HANDLOOM LABS</b><br>INSPIRED BY SCI-FI WORKBENCHES · NOT A REAL HOLOGRAM</div><div style="text-align:right">CAMERA OFF BY DEFAULT<br>NO VIDEO CAPTURE OR UPLOAD</div></footer>
 </main>
-
-<script type="module">
-const canvas = document.getElementById('art');
-const ctx = canvas.getContext('2d', { alpha: false });
-const video = document.getElementById('video');
-const startBtn = document.getElementById('start');
-const clearBtn = document.getElementById('clear');
-const notice = document.getElementById('notice');
-const statusText = document.getElementById('status');
-const statusDot = document.getElementById('status-dot');
-const empty = document.getElementById('empty');
-const stage = document.getElementById('stage');
-const shapeButtons = [...document.querySelectorAll('.shape-btn')];
-
-let stream = null;
-let handLandmarker = null;
-let running = false;
-let busy = false;
-let raf = 0;
-let lastDetect = 0;
-let lastShapeAt = 0;
-let lastPoint = null;
-let activeCount = 0;
-let previewMode = true;
-let canvasW = 0, canvasH = 0;
-let trail = [];
-
-function resizeCanvas() {
-  const rect = stage.getBoundingClientRect();
-  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-  canvasW = Math.max(1, rect.width);
-  canvasH = Math.max(1, rect.height);
-  canvas.width = Math.round(canvasW * dpr);
-  canvas.height = Math.round(canvasH * dpr);
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  paintBackground();
-  if (trail.length) drawTrail();
-}
-function paintBackground() {
-  ctx.fillStyle = '#151619';
-  ctx.fillRect(0, 0, canvasW, canvasH);
-  // Subtle, static grid; no continuous animation loop.
-  ctx.strokeStyle = '#202227';
-  ctx.lineWidth = 1;
-  const gap = 28;
-  ctx.beginPath();
-  for (let x = gap; x < canvasW; x += gap) { ctx.moveTo(x, 0); ctx.lineTo(x, canvasH); }
-  for (let y = gap; y < canvasH; y += gap) { ctx.moveTo(0, y); ctx.lineTo(canvasW, y); }
-  ctx.stroke();
-}
-function drawTrail() {
-  paintBackground();
-  for (const item of trail) drawShape(item.x, item.y, item.count, item.size || 1);
-}
-function drawShape(x, y, count, size = 1) {
-  const r = 6 + size * 2;
-  ctx.save();
-  ctx.strokeStyle = '#c7f36b';
-  ctx.fillStyle = '#c7f36b';
-  ctx.lineWidth = 2;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  if (count === 1) {
-    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
-  } else if (count === 2) {
-    ctx.beginPath(); ctx.moveTo(x-r*1.4,y+r); ctx.lineTo(x+r*1.4,y-r); ctx.stroke();
-  } else {
-    const sides = Math.max(3, Math.min(5, count));
-    const radius = r * 1.8;
-    ctx.beginPath();
-    for (let i=0; i<sides; i++) {
-      const a = -Math.PI/2 + i * Math.PI*2/sides;
-      const px = x + Math.cos(a)*radius, py = y + Math.sin(a)*radius;
-      if (!i) ctx.moveTo(px,py); else ctx.lineTo(px,py);
-    }
-    ctx.closePath(); ctx.stroke();
-  }
-  ctx.restore();
-}
-function setStatus(text, active=false) {
-  statusText.textContent = text;
-  statusDot.style.background = active ? '#c7f36b' : '#777';
-}
-function setActiveButton(count) {
-  shapeButtons.forEach(b => b.classList.toggle('active', Number(b.dataset.count) === count));
-}
-function preview(count) {
-  previewMode = true;
-  activeCount = count;
-  setActiveButton(count);
-  empty.hidden = true;
-  const x = canvasW * (0.5 + (Math.random() - .5) * .18);
-  const y = canvasH * (0.5 + (Math.random() - .5) * .18);
-  trail.push({x,y,count,size:1});
-  if (trail.length > 220) trail.shift();
-  drawTrail();
-  drawShape(x,y,count,1);
-  setStatus(['','Dot preview','Line preview','Triangle preview','Quadrilateral preview','Pentagon preview'][count]);
-  notice.textContent = 'Preview mode: tap another shape, or enable the camera for gesture control.';
-}
-function countFingers(lm) {
-  // Landmark indices: tip and PIP for index/middle/ring/pinky.
-  let count = 0;
-  for (const [tip,pip] of [[8,6],[12,10],[16,14],[20,18]]) {
-    if (lm[tip].y < lm[pip].y - 0.015) count++;
-  }
-  // Thumb: compare tip-to-wrist distances with thumb IP, which is more stable
-  // than a fixed left/right rule when the hand is mirrored.
-  const wrist = lm[0], thumbTip = lm[4], thumbIp = lm[3];
-  const d = (a,b) => Math.hypot(a.x-b.x, a.y-b.y);
-  if (d(thumbTip,wrist) > d(thumbIp,wrist) + 0.035) count++;
-  return count;
-}
-function landmarkToCanvas(lm) {
-  // Camera preview is mirrored, so drawing follows the hand as seen by the user.
-  return { x: (1-lm.x)*canvasW, y: lm.y*canvasH };
-}
-function handleHand(result) {
-  if (!result.landmarks || !result.landmarks.length) {
-    setStatus('Show one hand', true);
-    lastPoint = null;
-    return;
-  }
-  const lm = result.landmarks[0];
-  const count = countFingers(lm);
-  if (count === 0) {
-    setStatus('Paused · open your hand to draw', true);
-    lastPoint = null;
-    return;
-  }
-  const p = landmarkToCanvas(lm[8]); // index fingertip guides the drawing
-  setStatus(`${count} finger${count===1?'':'s'} · ${['pause','dot','line','triangle','quad','pentagon'][count] || 'shape'}`, true);
-  setActiveButton(count);
-  const now = performance.now();
-  // Throttle marks to avoid a noisy, laggy canvas.
-  if (now - lastShapeAt > 95) {
-    if (count === 1) {
-      trail.push({x:p.x,y:p.y,count:1,size:.8});
-      if (trail.length > 220) trail.shift();
-      drawShape(p.x,p.y,1,.8);
-    } else {
-      trail.push({x:p.x,y:p.y,count,size:.8});
-      if (trail.length > 220) trail.shift();
-      drawShape(p.x,p.y,count,.8);
-    }
-    lastShapeAt = now;
-  }
-  lastPoint = p;
-}
-async function startCamera() {
-  if (running) { stopCamera(); return; }
-  if (!navigator.mediaDevices?.getUserMedia) {
-    notice.textContent = 'This browser does not support camera access here. Open the published HTTPS GitHub Pages link in Chrome.';
-    return;
-  }
-  startBtn.disabled = true;
-  notice.textContent = 'Requesting camera permission…';
-  try {
-    // Ask for a modest resolution to keep phone performance smooth.
-    stream = await navigator.mediaDevices.getUserMedia({
-      audio: false,
-      video: { facingMode: 'user', width: { ideal: 480 }, height: { ideal: 360 }, frameRate: { ideal: 20, max: 24 } }
-    });
-    video.srcObject = stream;
-    await video.play();
-    notice.textContent = 'Loading the hand tracker for the first time…';
-    const vision = await import('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14');
-    const fileset = await vision.FilesetResolver.forVisionTasks(
-      'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm'
-    );
-    handLandmarker = await vision.HandLandmarker.createFromOptions(fileset, {
-      baseOptions: {
-        modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task',
-        delegate: 'CPU'
-      },
-      runningMode: 'VIDEO',
-      numHands: 1,
-      minHandDetectionConfidence: 0.55,
-      minHandPresenceConfidence: 0.5,
-      minTrackingConfidence: 0.5
-    });
-    running = true;
-    previewMode = false;
-    startBtn.textContent = 'Turn camera off';
-    startBtn.classList.remove('primary');
-    empty.hidden = true;
-    notice.textContent = 'Camera active. Your video is processed in this browser and is not uploaded by Handloom.';
-    setStatus('Show one hand', true);
-    lastDetect = 0;
-    raf = requestAnimationFrame(detectLoop);
-  } catch (err) {
-    stopTracksOnly();
-    const name = err?.name || '';
-    if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
-      notice.textContent = 'Camera permission was blocked. In Chrome, open the site controls beside the address → Permissions → Camera → Allow, then reload.';
-    } else if (name === 'NotFoundError') {
-      notice.textContent = 'No camera was found on this device.';
-    } else {
-      notice.textContent = 'Could not start camera/tracker. Use the shape previews, check your connection, then reload and try again.';
-    }
-    setStatus('Camera unavailable');
-  } finally {
-    startBtn.disabled = false;
-  }
-}
-function detectLoop(now) {
-  if (!running) return;
-  raf = requestAnimationFrame(detectLoop);
-  if (busy || video.readyState < 2 || now - lastDetect < 75) return; // cap inference to ~13 FPS
-  busy = true;
-  lastDetect = now;
-  try {
-    const result = handLandmarker.detectForVideo(video, now);
-    handleHand(result);
-  } catch (e) {
-    // A transient frame error should not crash the whole app.
-  } finally {
-    busy = false;
-  }
-}
-function stopTracksOnly() {
-  if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
-  video.srcObject = null;
-}
-function stopCamera() {
-  running = false;
-  cancelAnimationFrame(raf);
-  stopTracksOnly();
-  if (handLandmarker) { handLandmarker.close(); handLandmarker = null; }
-  startBtn.textContent = 'Enable camera';
-  startBtn.classList.add('primary');
-  setStatus('Camera off');
-  notice.textContent = 'Camera is off. Nothing is recorded or uploaded.';
-  lastPoint = null;
-}
-startBtn.addEventListener('click', startCamera);
-clearBtn.addEventListener('click', () => {
-  trail = [];
-  paintBackground();
-  empty.hidden = running;
-  setActiveButton(0);
-  setStatus(running ? 'Canvas cleared · keep drawing' : 'Ready when you are', running);
-  notice.textContent = running ? 'Canvas cleared. Show your hand to draw again.' : 'Canvas cleared. Choose a shape or enable the camera.';
-});
-shapeButtons.forEach(btn => btn.addEventListener('click', () => preview(Number(btn.dataset.count))));
-window.addEventListener('resize', resizeCanvas);
-window.addEventListener('pagehide', stopCamera);
-resizeCanvas();
+<script>
+(() => {
+ const canvas=document.getElementById('scene'),ctx=canvas.getContext('2d');
+ const $=id=>document.getElementById(id);
+ const state={shape:'triangle',tool:'select',x:.5,y:.45,rotation:0,scale:1,drag:false,lastX:0,lastY:0,objects:[],pulse:0};
+ let w=0,h=0,dpr=1,raf=0,last=0;
+ const cyan='#67e5ff',gold='#ffca72';
+ function resize(){const r=canvas.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,1.5);w=r.width;h=r.height;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw()}
+ function point(x,y){return{x:x*w,y:y*h}}
+ function polygon(n,cx,cy,r,rot=-Math.PI/2){const pts=[];for(let i=0;i<n;i++){const a=rot+i*2*Math.PI/n;pts.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r])}return pts}
+ function line(a,b,alpha=1){ctx.globalAlpha=alpha;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();ctx.globalAlpha=1}
+ function drawShape(){
+   const cx=state.x*w,cy=state.y*h,rad=Math.min(w,h)*.19*state.scale;
+   ctx.save();ctx.translate(cx,cy);ctx.rotate(state.rotation*Math.PI/180);
+   ctx.strokeStyle=cyan;ctx.fillStyle=cyan;ctx.lineWidth=1.25;ctx.shadowColor=cyan;ctx.shadowBlur=12;
+   if(state.shape==='line'){line([-rad*1.3,0],[rad*1.3,0]);ctx.beginPath();ctx.arc(0,0,rad*.18,0,Math.PI*2);ctx.stroke()}
+   else if(state.shape==='atom'){
+     for(let i=0;i<3;i++){ctx.save();ctx.rotate(i*Math.PI/3);ctx.beginPath();ctx.ellipse(0,0,rad*1.35,rad*.48,0,0,Math.PI*2);ctx.stroke();ctx.restore()}
+     ctx.beginPath();ctx.arc(0,0,4,0,Math.PI*2);ctx.fill();
+   } else {
+     const n=state.shape==='triangle'?3:state.shape==='cube'?4:5;
+     const pts=polygon(n,0,0,rad,state.shape==='cube'?-Math.PI/4:-Math.PI/2);
+     ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.stroke();
+     if(state.shape==='cube'){
+       const back=pts.map(p=>[p[0]+rad*.36,p[1]-rad*.34]);
+       ctx.beginPath();back.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.stroke();
+       pts.forEach((p,i)=>line(p,back[i],.8));
+     } else {
+       pts.forEach((p,i)=>{line(p,[p[0]*-.25,p[1]*-.25],.42);ctx.beginPath();ctx.arc(p[0],p[1],2.3,0,Math.PI*2);ctx.fill()});
+     }
+   }
+   // Orbit rings and aiming reticle.
+   ctx.shadowBlur=0;ctx.strokeStyle='rgba(103,229,255,.23)';ctx.setLineDash([3,7]);ctx.beginPath();ctx.arc(0,0,rad*1.65,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
+   ctx.strokeStyle='rgba(103,229,255,.48)';ctx.beginPath();ctx.moveTo(-rad*1.85,0);ctx.lineTo(-rad*1.55,0);ctx.moveTo(rad*1.55,0);ctx.lineTo(rad*1.85,0);ctx.moveTo(0,-rad*1.85);ctx.lineTo(0,-rad*1.55);ctx.moveTo(0,rad*1.55);ctx.lineTo(0,rad*1.85);ctx.stroke();
+   ctx.restore();
+ }
+ function draw(){
+   ctx.clearRect(0,0,w,h);ctx.fillStyle='#06111c';ctx.fillRect(0,0,w,h);
+   const glow=ctx.createRadialGradient(w*.5,h*.45,5,w*.5,h*.45,Math.max(w,h)*.65);glow.addColorStop(0,'rgba(14,73,100,.36)');glow.addColorStop(1,'rgba(2,8,14,0)');ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
+   ctx.strokeStyle='rgba(70,177,213,.10)';ctx.lineWidth=1;const gap=28;ctx.beginPath();for(let x=0;x<w;x+=gap){ctx.moveTo(x,0);ctx.lineTo(x,h)}for(let y=0;y<h;y+=gap){ctx.moveTo(0,y);ctx.lineTo(w,y)}ctx.stroke();
+   // Horizon rings, restrained to keep the phone cool.
+   ctx.strokeStyle='rgba(67,191,229,.12)';for(let i=0;i<4;i++){ctx.beginPath();ctx.ellipse(w/2,h*.52,Math.min(w,h)*(.17+i*.095),Math.min(w,h)*(.045+i*.027),0,0,Math.PI*2);ctx.stroke()}
+   drawShape();
+   ctx.fillStyle=gold;ctx.shadowColor=gold;ctx.shadowBlur=8;ctx.beginPath();ctx.arc(state.x*w,state.y*h,2.2,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+   $('xVal').textContent=(state.x*100).toFixed(1).padStart(4,'0');$('yVal').textContent=(state.y*100).toFixed(1).padStart(4,'0');
+ }
+ function setShape(shape){
+   state.shape=shape;document.querySelectorAll('.element').forEach(b=>b.classList.toggle('active',b.dataset.shape===shape));
+   const names={atom:['ORBITAL','ORBITAL FIELD / 01'],line:['VECTOR','LINEAR VECTOR / 02'],triangle:['TRIAD','TRIANGULAR LATTICE / 03'],cube:['LATTICE','CUBIC LATTICE / 04'],pentagon:['POLYGON','PENTAGONAL FIELD / 05']};
+   $('objectName').textContent=names[shape][1];$('centerTitle').textContent='STRUCTURE // 0'+({atom:1,line:2,triangle:3,cube:4,pentagon:5}[shape]);$('centerSub').textContent='GEOMETRY READY FOR INPUT';$('readShape').textContent=names[shape][0]+' / 0'+({atom:1,line:2,triangle:3,cube:4,pentagon:5}[shape]);draw();
+ }
+ document.querySelectorAll('.element').forEach(b=>b.addEventListener('click',()=>setShape(b.dataset.shape)));
+ document.querySelectorAll('.tool').forEach(b=>b.addEventListener('click',()=>{state.tool=b.dataset.tool;document.querySelectorAll('.tool').forEach(t=>t.classList.toggle('active',t===b));$('trackState').textContent=state.tool.toUpperCase()+' / POINTER';$('centerSub').textContent=state.tool==='connect'?'SELECTED FIELD READY TO CONNECT':state.tool==='rotate'?'DRAG HORIZONTALLY TO ROTATE':state.tool==='scale'?'SCROLL OR USE +/- TO SCALE':'DRAG TO REPOSITION';}));
+ function down(e){const r=canvas.getBoundingClientRect();state.drag=true;state.lastX=e.clientX-r.left;state.lastY=e.clientY-r.top;canvas.setPointerCapture?.(e.pointerId)}
+ function move(e){if(!state.drag)return;const r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,dx=x-state.lastX,dy=y-state.lastY;state.lastX=x;state.lastY=y;
+   if(state.tool==='rotate'){state.rotation=(state.rotation+dx*.8+360)%360;$('rotationRead').textContent=String(Math.round(state.rotation)).padStart(3,'0')+'°'}
+   else if(state.tool==='scale'){state.scale=Math.max(.45,Math.min(1.8,state.scale+dx*.003));$('scaleRead').textContent=state.scale.toFixed(2)+'×'}
+   else if(state.tool==='connect'){state.rotation=(state.rotation+dx*.2+360)%360}
+   else{state.x=Math.max(.12,Math.min(.88,state.x+dx/w));state.y=Math.max(.16,Math.min(.78,state.y+dy/h))}
+   draw();
+ }
+ function up(){state.drag=false}
+ canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);
+ canvas.addEventListener('wheel',e=>{e.preventDefault();state.scale=Math.max(.45,Math.min(1.8,state.scale+(e.deltaY<0?.05:-.05)));$('scaleRead').textContent=state.scale.toFixed(2)+'×';draw()},{passive:false});
+ $('newObject').addEventListener('click',()=>{state.x=.5+(Math.random()-.5)*.12;state.y=.43+(Math.random()-.5)*.12;state.rotation=0;state.scale=1;$('rotationRead').textContent='000°';$('scaleRead').textContent='1.00×';$('frameState').textContent='SYNTHESIZED';setTimeout(()=>$('frameState').textContent='STABLE',900);draw()});
+ $('reset').addEventListener('click',()=>{state.x=.5;state.y=.45;state.rotation=0;state.scale=1;$('rotationRead').textContent='000°';$('scaleRead').textContent='1.00×';$('frameState').textContent='STABLE';draw()});
+ new ResizeObserver(resize).observe(canvas);resize();
+})();
 </script>
 </body>
 </html>

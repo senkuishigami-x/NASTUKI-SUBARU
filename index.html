@@ -1,91 +1,94 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#030810">
-<title>HANDLOOM — Matter Lab</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050b14">
+<title>Handloom — Fingertip Solar System</title>
 <style>
-:root{color-scheme:dark;--cyan:#7deaff;--muted:#7295a9;--line:#1b5269;--panel:rgba(4,17,29,.88);--gold:#ffd58a}
-*{box-sizing:border-box}body{margin:0;background:#030810;color:#e7faff;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
-.app{max-width:1150px;margin:auto;padding:14px}.top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #164052;padding:5px 2px 14px;gap:12px}.brand{display:flex;gap:10px;align-items:center}.logo{width:35px;height:35px;border:1px solid var(--cyan);display:grid;place-items:center;color:var(--cyan);font-size:22px;box-shadow:0 0 20px #29c8f333}.brand strong{font-size:13px;letter-spacing:.24em}.brand small{display:block;font-size:8px;letter-spacing:.17em;color:var(--muted);margin-top:4px}.sys{text-align:right;color:var(--cyan);font-size:9px;letter-spacing:.12em}.sys span{display:block;color:#82b0c5;margin-top:4px}
-.intro{padding:20px 2px 15px}.eyebrow{font-size:9px;color:var(--cyan);letter-spacing:.22em}.intro h1{font-size:clamp(28px,6vw,46px);font-weight:500;letter-spacing:-.05em;line-height:1.02;margin:8px 0}.intro h1 em{font-style:normal;color:var(--cyan);text-shadow:0 0 24px #52dfff44}.intro p{color:#8baabb;font-size:12px;line-height:1.6;max-width:580px;margin:0}
-.lab{position:relative;height:min(64vh,570px);min-height:350px;border:1px solid #1c5b73;border-radius:12px;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,#0b3147,#061421 48%,#02070d 85%);box-shadow:inset 0 0 55px #12a7d414}#view{width:100%;height:100%;display:block;touch-action:none}
-.hud{position:absolute;pointer-events:none;font:9px/1.8 ui-monospace,SFMono-Regular,monospace;letter-spacing:.08em;color:#7ba8bd}.hud b{color:var(--cyan);font-weight:500}.tl{top:13px;left:14px}.tr{top:13px;right:14px;text-align:right}.bl{bottom:13px;left:14px}.br{bottom:13px;right:14px;text-align:right}.crosshair{position:absolute;left:50%;top:50%;width:22px;height:22px;transform:translate(-50%,-50%);border:1px solid #73e9ff55;border-radius:50%;pointer-events:none}.crosshair:before,.crosshair:after{content:"";position:absolute;background:#73e9ff66}.crosshair:before{width:32px;height:1px;left:-6px;top:10px}.crosshair:after{height:32px;width:1px;left:10px;top:-6px}
-.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}.btn{border:1px solid #1a536a;background:#071826;color:#b7dce9;padding:12px 5px;border-radius:8px;font-size:10px;letter-spacing:.06em}.btn span{display:block;font-size:16px;color:var(--cyan);margin-bottom:4px}.btn.active{border-color:var(--cyan);background:#0a2a3a;color:white}
-.panels{display:grid;grid-template-columns:1fr;gap:9px;margin-top:9px}.panel{background:var(--panel);border:1px solid #16475a;border-radius:10px;padding:13px}.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}.heading b{font-size:10px;letter-spacing:.15em;font-weight:600}.heading small{font-size:8px;color:var(--muted);letter-spacing:.1em}.objects{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.obj{border:1px solid #21485a;border-radius:7px;background:#07131f;padding:9px 2px;color:#bfe6f3;font-size:9px}.obj strong{display:block;font-size:20px;color:var(--gold);font-weight:400;margin-bottom:5px}.obj.active{border-color:var(--gold);box-shadow:0 0 13px #ffd58a18}.actionrow{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.action{padding:11px 7px;border-radius:7px;border:1px solid #1a536a;background:#071826;color:#b7dce9;font-size:10px;letter-spacing:.08em}.action.primary{background:var(--cyan);color:#03101a;font-weight:700;border-color:var(--cyan)}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.stats small{display:block;font-size:8px;color:var(--muted);letter-spacing:.12em}.stats strong{display:block;font-size:12px;color:var(--cyan);font-weight:500;margin-top:5px}.help{font-size:10px;color:#7fa2b4;line-height:1.6;margin-top:10px}.footer{border-top:1px solid #164052;margin-top:13px;padding:12px 2px 4px;display:flex;justify-content:space-between;gap:10px;font-size:8px;letter-spacing:.08em;line-height:1.7;color:#587f91}.footer b{color:#9ac8d9;font-weight:500}
-@media(min-width:760px){.app{padding:22px 24px}.panels{grid-template-columns:1.2fr .8fr}.lab{height:550px}.intro{padding-top:25px}.obj{padding:13px 3px}}
-@media(max-width:360px){.app{padding:10px}.lab{min-height:320px}.hud{font-size:7px}.btn{font-size:9px}.obj{font-size:8px}}
+:root{color-scheme:dark;--bg:#050b14;--panel:#0b1724;--line:#24475b;--cyan:#80e8ff;--muted:#91a8b8;--gold:#ffd16b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#eaf7ff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1100px;margin:auto;padding:16px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding-bottom:13px}.brand{font-weight:750;letter-spacing:.2em;font-size:13px}.brand small{display:block;color:var(--muted);font-size:9px;font-weight:400;margin-top:5px;letter-spacing:.14em}.status{font:10px/1.6 ui-monospace,monospace;text-align:right;color:var(--cyan)}
+h1{font-size:clamp(26px,5vw,42px);line-height:1.04;letter-spacing:-.045em;font-weight:550;margin:22px 0 8px}h1 span{color:var(--cyan)}.sub{color:var(--muted);font-size:13px;line-height:1.55;margin:0 0 16px;max-width:620px}
+.stage{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:radial-gradient(ellipse at 50% 50%,#10283d,#050b14 75%)}#solar{display:block;width:100%;height: min(62vw,490px);min-height:300px;touch-action:none}
+.hud{position:absolute;top:12px;left:13px;font:10px/1.65 ui-monospace,monospace;color:#a4c1d2;pointer-events:none}.hud b{color:var(--cyan);font-weight:500}
+.camera{position:absolute;right:10px;top:10px;width:clamp(110px,25%,190px);aspect-ratio:4/3;border:1px solid #4387a2;border-radius:9px;overflow:hidden;background:#07121d;display:grid;place-items:center}.camera video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1);display:none}.camera .camlabel{position:absolute;bottom:0;left:0;right:0;background:#020913c9;padding:4px 6px;font:9px ui-monospace,monospace;color:#bceeff}.camera .camplaceholder{text-align:center;font-size:10px;color:#a9c9d9;padding:8px}.camera .camplaceholder strong{display:block;font-size:22px;color:var(--cyan);font-weight:400;margin-bottom:3px}
+.controls,.planets{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.btn,.planet{border:1px solid var(--line);border-radius:9px;background:var(--panel);color:#d8edf7;padding:11px 13px;min-height:43px;font:inherit;font-size:12px}.btn.primary{background:var(--cyan);border-color:var(--cyan);color:#04111b;font-weight:700}.btn:disabled{opacity:.55}.planet[aria-pressed=true]{border-color:var(--gold);color:var(--gold)}.planet{flex:1 1 80px;padding:9px 7px}
+.info{margin-top:12px;display:grid;grid-template-columns:1fr;gap:9px}.card{border:1px solid var(--line);border-radius:10px;background:#081521;padding:13px}.card h2{font-size:10px;letter-spacing:.14em;margin:0 0 9px;color:#b9dce9}.readout{font-size:13px;color:var(--cyan);font-weight:600}.detail{font-size:12px;color:var(--muted);line-height:1.55;margin-top:5px}.help{font-size:12px;color:var(--muted);line-height:1.65;margin-top:12px}.help b{color:#d9edf7}.error{color:#ffd08a}.footer{border-top:1px solid var(--line);margin-top:15px;padding-top:11px;font-size:10px;color:#7794a5;line-height:1.6}
+@media(min-width:720px){main{padding:24px}.info{grid-template-columns:1fr 1fr}.sub{font-size:14px}}
 </style>
 </head>
-<body><main class="app">
-<header class="top"><div class="brand"><div class="logo">✳</div><div><strong>HANDLOOM</strong><small>SPATIAL MATTER LAB / 03</small></div></div><div class="sys">● SYSTEM ONLINE<span>3D ENGINE // READY</span></div></header>
-<section class="intro"><div class="eyebrow">EXPERIMENTAL WORKSPACE · 001</div><h1>Discover the shape<br>of <em>what comes next.</em></h1><p>A real-time 3D workbench inspired by cinematic science labs. Drag to orbit the structure, pinch to zoom, and switch between atomic and geometric models.</p></section>
-<section class="lab"><canvas id="view"></canvas><div class="crosshair"></div><div class="hud tl">MATTER SCAN <b>ACTIVE</b><br>RENDER MODE <b>REAL-TIME 3D</b></div><div class="hud tr">MODEL <b id="modelHud">ATOM / 01</b><br>INPUT <b>TOUCH + DRAG</b></div><div class="hud bl">ROTATION <b id="rotHud">0° / 0°</b><br>ZOOM <b id="zoomHud">1.0×</b></div><div class="hud br">FIELD STATUS<br><b id="statusHud">STABLE</b></div></section>
-<div class="controls"><button class="btn active" data-mode="orbit"><span>◎</span>ORBIT VIEW</button><button class="btn" data-mode="inspect"><span>⌖</span>INSPECT</button><button class="btn" data-mode="assemble"><span>⌘</span>ASSEMBLE</button></div>
-<div class="panels"><section class="panel"><div class="heading"><b>MODEL CHAMBER</b><small>CHOOSE A STRUCTURE</small></div><div class="objects">
-<button class="obj active" data-model="atom"><strong>◎</strong>ATOM</button><button class="obj" data-model="molecule"><strong>⌬</strong>MOLECULE</button><button class="obj" data-model="tetra"><strong>△</strong>TETRAHEDRON</button><button class="obj" data-model="cube"><strong>◇</strong>CUBE</button><button class="obj" data-model="torus"><strong>◉</strong>TORUS</button></div><div class="actionrow"><button class="action primary" id="synth">＋ SYNTHESIZE MODEL</button><button class="action" id="reset">↺ RESET VIEW</button></div><div class="help">Touch and drag the model to rotate it. Pinch with two fingers or use the zoom controls below. The scene is rendered in 3D; camera permission is not needed.</div></section>
-<section class="panel"><div class="heading"><b>LIVE TELEMETRY</b><small>VISUALIZATION DATA</small></div><div class="stats"><div><small>ACTIVE MODEL</small><strong id="modelRead">ATOM / 01</strong></div><div><small>FIELD INTEGRITY</small><strong>99.8%</strong></div><div><small>ROTATION</small><strong id="rotRead">000°</strong></div><div><small>ZOOM LEVEL</small><strong id="zoomRead">1.0×</strong></div></div><div class="actionrow"><button class="action" id="zoomOut">− ZOOM OUT</button><button class="action" id="zoomIn">＋ ZOOM IN</button></div></section></div>
-<footer class="footer"><div><b>HANDLOOM // LAB SYSTEMS</b><br>FICTIONAL SCI-FI INTERFACE · ACTUAL 3D SCENE</div><div style="text-align:right">NO CAMERA REQUIRED<br>THREE.JS WEBGL</div></footer>
+<body><main>
+<header class="top"><div class="brand">HANDLOOM<small>FINGERTIP SOLAR SYSTEM</small></div><div class="status" id="status">SYSTEM READY<br>CAMERA OFF</div></header>
+<h1>Explore the cosmos.<br><span>With your fingertips.</span></h1>
+<p class="sub">A lightweight, interactive solar system. Enable your camera to try hand tracking, or explore using touch controls. Camera frames are processed locally in your browser.</p>
+<section class="stage">
+<canvas id="solar" aria-label="Interactive solar system"></canvas>
+<div class="hud">SOLAR EXPLORER<br><b id="mode">TOUCH MODE</b><br><span id="gesture">WAITING FOR INPUT</span></div>
+<div class="camera"><video id="video" playsinline muted></video><div class="camplaceholder" id="camplaceholder"><strong>⌁</strong>CAMERA PREVIEW<br>OFF</div><div class="camlabel" id="camlabel">CAMERA OFF</div></div>
+</section>
+<div class="controls"><button class="btn primary" id="cameraBtn">Enable camera</button><button class="btn" id="pauseBtn">Pause orbits</button><button class="btn" id="resetBtn">Reset view</button><button class="btn" id="speedBtn">Orbit speed: 1×</button></div>
+<div class="planets" id="planets" aria-label="Focus a planet"></div>
+<div class="info"><section class="card"><h2>SELECTED BODY</h2><div class="readout" id="selected">Sun</div><div class="detail" id="detail">The star at the centre of our solar system.</div></section><section class="card"><h2>GESTURE GUIDE</h2><div class="detail" id="gestureHelp">One finger: point to aim. Pinch thumb and index finger to select the nearest planet. Open palm: release. Closed fist: pause or resume orbits.</div></section></div>
+<div class="help"><b>How to use:</b> Drag on the solar system to rotate the view. Pinch to zoom. For hand tracking, open this page on an HTTPS GitHub Pages link, tap <b>Enable camera</b>, and allow camera permission. The first launch downloads the hand-tracking model and needs internet access.</div>
+<div class="footer">Planet sizes and orbital distances are simplified for visibility. Hand tracking depends on lighting, camera quality, and browser performance. The app does not record or upload camera video.</div>
 </main>
 <script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-const canvas=document.querySelector('#view');
-const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x04101a,.055);
-const camera=new THREE.PerspectiveCamera(42,1,.1,100);camera.position.set(0,0,8);
-const renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:true,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.35));renderer.setClearColor(0x000000,0);
-const cyan=0x67eaff,gold=0xffd58a;
-scene.add(new THREE.AmbientLight(0x5a9ab5,1.6));
-const light=new THREE.PointLight(0x46dfff,30,20);light.position.set(2,3,4);scene.add(light);
-const root=new THREE.Group();scene.add(root);
-const grid=new THREE.GridHelper(18,36,0x164a61,0x0b2636);grid.position.y=-2.15;grid.material.transparent=true;grid.material.opacity=.55;scene.add(grid);
-const ringMat=new THREE.MeshBasicMaterial({color:cyan,transparent:true,opacity:.22,wireframe:true});
-const ring=new THREE.Mesh(new THREE.TorusGeometry(2.55,.006,4,100),ringMat);ring.rotation.x=Math.PI/2.25;scene.add(ring);
-let model='atom',mode='orbit',spin=0,zoom=1,drag=false,lastX=0,lastY=0,ptrs=new Map(),pinchStart=0,modelGroup=null,autoSpin=true;
-const models={atom:'ATOM / 01',molecule:'MOLECULE / 02',tetra:'TETRAHEDRON / 03',cube:'CUBE / 04',torus:'TORUS / 05'};
-function mat(color=cyan,opacity=1){return new THREE.MeshBasicMaterial({color,wireframe:true,transparent:opacity<1,opacity})}
-function lineBetween(parent,a,b,material=mat(cyan,.8)){const g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a),new THREE.Vector3(...b)]);parent.add(new THREE.Line(g,material))}
-function addAtom(parent,pos,r=.16,color=gold){const m=new THREE.Mesh(new THREE.IcosahedronGeometry(r,1),new THREE.MeshBasicMaterial({color,wireframe:true}));m.position.set(...pos);parent.add(m);const core=new THREE.Mesh(new THREE.SphereGeometry(r*.22,8,6),new THREE.MeshBasicMaterial({color}));core.position.copy(m.position);parent.add(core)}
-function build(which){
- if(modelGroup)root.remove(modelGroup);modelGroup=new THREE.Group();root.add(modelGroup);
- if(which==='atom'){
-  addAtom(modelGroup,[0,0,0],.3,gold);
-  for(let i=0;i<3;i++){const orbit=new THREE.Mesh(new THREE.TorusGeometry(1.35,.009,4,90),mat(cyan,.85));orbit.rotation.set(i*.85,i*1.04,i*.5);modelGroup.add(orbit);const e=new THREE.Mesh(new THREE.IcosahedronGeometry(.085,1),new THREE.MeshBasicMaterial({color:gold}));e.position.set(Math.cos(i*2)*1.35,Math.sin(i*2)*.7,Math.sin(i*2)*.85);orbit.add(e)}
- }else if(which==='molecule'){
-  const pts=[[-1.3,0,0],[-.55,.65,0],[.35,.65,.15],[1.15,0,0],[.35,-.65,-.15],[-.55,-.65,0]];
-  pts.forEach((p,i)=>addAtom(modelGroup,p,i%2?.17:.23,i%2?cyan:gold));
-  [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[1,5],[2,4]].forEach(([a,b])=>lineBetween(modelGroup,pts[a],pts[b]));
- }else if(which==='tetra'){
-  const pts=[[0,1.35,0],[-1.15,-.7, .8],[1.15,-.7,.8],[0,-.7,-1.15]];
-  pts.forEach(p=>addAtom(modelGroup,p,.12,gold));
-  [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]].forEach(([a,b])=>lineBetween(modelGroup,pts[a],pts[b]));
- }else if(which==='cube'){
-  const geo=new THREE.EdgesGeometry(new THREE.BoxGeometry(2.15,2.15,2.15));modelGroup.add(new THREE.LineSegments(geo,mat(cyan)));
-  const inner=new THREE.Mesh(new THREE.OctahedronGeometry(1.05,0),mat(gold,.8));modelGroup.add(inner);
- }else{
-  const tor=new THREE.Mesh(new THREE.TorusKnotGeometry(.85,.28,90,8,2,3),mat(cyan));modelGroup.add(tor);
-  const inner=new THREE.Mesh(new THREE.TorusGeometry(1.6,.008,4,90),mat(gold,.55));inner.rotation.x=1;modelGroup.add(inner);
- }
- document.querySelectorAll('.obj').forEach(b=>b.classList.toggle('active',b.dataset.model===which));
- document.querySelector('#modelHud').textContent=models[which];document.querySelector('#modelRead').textContent=models[which];document.querySelector('#statusHud').textContent='MODEL SYNTHESIZED';
- setTimeout(()=>document.querySelector('#statusHud').textContent='STABLE',650);
+const $=id=>document.getElementById(id);
+const canvas=$('solar'),ctx=canvas.getContext('2d'),video=$('video');
+const bodies=[
+{name:'Mercury',orbit:.13,r:3.2,color:'#aaa8a0',period:.24,desc:'A small, rocky planet closest to the Sun.'},
+{name:'Venus',orbit:.21,r:5,color:'#d9ad77',period:.62,desc:'A hot rocky world with a dense atmosphere.'},
+{name:'Earth',orbit:.29,r:6,color:'#5aa9ff',period:1,desc:'Our home planet, with liquid-water oceans.'},
+{name:'Mars',orbit:.37,r:4.5,color:'#db7357',period:1.88,desc:'The red planet, home to giant volcanoes.'},
+{name:'Jupiter',orbit:.49,r:10,color:'#d8b18b',period:11.86,desc:'The largest planet in our solar system.'},
+{name:'Saturn',orbit:.62,r:8,color:'#d9c58b',period:29.4,desc:'A gas giant famous for its rings.'}
+];
+const descriptions={Sun:'The star at the centre of our solar system.',...Object.fromEntries(bodies.map(b=>[b.name,b.desc]))};
+let W=0,H=0,dpr=1,angle=0,paused=false,speed=1,selected='Sun',drag=false,lastX=0,lastY=0,zoom=1;
+let stream=null,landmarker=null,running=false,raf=0,lastDetect=0,busy=false,closedSince=0,lastPinch=false,lastGesture='Waiting for hand';
+const planetButtons=$('planets');
+['Sun',...bodies.map(b=>b.name)].forEach(name=>{const b=document.createElement('button');b.className='planet';b.textContent=({Sun:'☀ Sun',Earth:'🌍 Earth',Saturn:'◉ Saturn'}[name]||'● '+name);b.setAttribute('aria-pressed',String(name==='Sun'));b.addEventListener('click',()=>selectBody(name));planetButtons.appendChild(b)});
+function selectBody(name){selected=name;$('selected').textContent=name;$('detail').textContent=descriptions[name];[...planetButtons.children].forEach(b=>b.setAttribute('aria-pressed',String(b.textContent.includes(name))));}
+function resize(){const r=canvas.getBoundingClientRect();W=r.width;H=r.height;dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw()}
+function positions(){const cx=W*.5,cy=H*.53,base=Math.min(W*.43,H*.76);return [{name:'Sun',x:cx,y:cy,r:13,color:'#ffd16b'},...bodies.map((b,i)=>{const a=angle*(.65+1/(b.period**.28))*(1/b.period**.22)+i*.7;return {...b,x:cx+Math.cos(a)*base*b.orbit/.62,y:cy+Math.sin(a)*base*b.orbit/.62*.48}})]}
+function draw(){ctx.clearRect(0,0,W,H);ctx.fillStyle='#050d18';ctx.fillRect(0,0,W,H);const g=ctx.createRadialGradient(W*.5,H*.5,3,W*.5,H*.5,Math.max(W,H)*.7);g.addColorStop(0,'#122b40');g.addColorStop(1,'#030914');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+let seed=17;for(let i=0;i<65;i++){seed=seed*16807%2147483647;const x=seed/2147483647*W;seed=seed*16807%2147483647;const y=seed/2147483647*H;ctx.fillStyle='rgba(200,230,255,.55)';ctx.fillRect(x,y,1,1)}
+const cx=W*.5,cy=H*.53,base=Math.min(W*.43,H*.76)*zoom;
+bodies.forEach(b=>{ctx.beginPath();ctx.ellipse(cx,cy,base*b.orbit/.62,base*b.orbit/.62*.48,0,0,Math.PI*2);ctx.strokeStyle='rgba(121,184,217,.25)';ctx.lineWidth=1;ctx.stroke()});
+const ps=positions();ps.forEach(p=>{if(p.name==='Sun')return;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color;ctx.fill();if(p.name==='Saturn'){ctx.beginPath();ctx.ellipse(p.x,p.y,p.r*1.7,p.r*.58,.3,0,Math.PI*2);ctx.strokeStyle='#e5d2a5';ctx.lineWidth=2;ctx.stroke()}if(selected===p.name){ctx.beginPath();ctx.arc(p.x,p.y,p.r+6,0,Math.PI*2);ctx.strokeStyle='#d8f7ff';ctx.stroke()}});
+const sun=ps[0],glow=ctx.createRadialGradient(sun.x,sun.y,2,sun.x,sun.y,32);glow.addColorStop(0,'#fff4c4');glow.addColorStop(.3,'#ffc85d');glow.addColorStop(1,'rgba(255,160,50,0)');ctx.fillStyle=glow;ctx.beginPath();ctx.arc(sun.x,sun.y,32,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(sun.x,sun.y,selected==='Sun'?15:12,0,Math.PI*2);ctx.fillStyle='#ffd16b';ctx.fill();
+if(selected!=='Sun'){const p=ps.find(p=>p.name===selected);if(p){ctx.beginPath();ctx.arc(p.x,p.y,p.r+7,0,Math.PI*2);ctx.strokeStyle='#d8f7ff';ctx.lineWidth=1;ctx.stroke()}}
+if(!paused)angle+=.0015*speed;
 }
-function updateZoom(v){zoom=Math.max(.65,Math.min(1.8,v));camera.position.z=8/zoom;document.querySelector('#zoomHud').textContent=zoom.toFixed(1)+'×';document.querySelector('#zoomRead').textContent=zoom.toFixed(1)+'×'}
-document.querySelectorAll('.obj').forEach(b=>b.addEventListener('click',()=>{model=b.dataset.model;build(model)}));
-document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('active',x===b));autoSpin=mode==='orbit';document.querySelector('#statusHud').textContent=mode.toUpperCase()+' MODE'}));
-document.querySelector('#synth').addEventListener('click',()=>{build(model);root.rotation.set(0,0,0);spin=0;document.querySelector('#rotRead').textContent='000°';document.querySelector('#rotHud').textContent='0° / 0°'});
-document.querySelector('#reset').addEventListener('click',()=>{root.rotation.set(0,0,0);spin=0;updateZoom(1);autoSpin=mode==='orbit';});
-document.querySelector('#zoomIn').addEventListener('click',()=>updateZoom(zoom+.12));document.querySelector('#zoomOut').addEventListener('click',()=>updateZoom(zoom-.12));
-canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});drag=true;lastX=e.clientX;lastY=e.clientY;pinchStart=0;autoSpin=false});
-canvas.addEventListener('pointermove',e=>{if(!ptrs.has(e.pointerId))return;const prev=ptrs.get(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
- if(ptrs.size>=2){const arr=[...ptrs.values()],dist=Math.hypot(arr[0].x-arr[1].x,arr[0].y-arr[1].y);if(pinchStart)updateZoom(zoom+(dist-pinchStart)*.003);pinchStart=dist;return}
- const dx=e.clientX-lastX,dy=e.clientY-lastY;lastX=e.clientX;lastY=e.clientY;
- if(mode==='rotate'||mode==='orbit'||mode==='inspect'){root.rotation.y+=dx*.009;root.rotation.x+=dy*.009;spin=(spin+Math.abs(dx)*.5)%360;document.querySelector('#rotRead').textContent=String(Math.round(spin)).padStart(3,'0')+'°';document.querySelector('#rotHud').textContent=Math.round(root.rotation.y*57.3)+'° / '+Math.round(root.rotation.x*57.3)+'°'}
- else {root.position.x=Math.max(-1.5,Math.min(1.5,root.position.x+dx*.006));root.position.y=Math.max(-1.2,Math.min(1.2,root.position.y-dy*.006))}
-});
-function pointerEnd(e){ptrs.delete(e.pointerId);if(!ptrs.size){drag=false;pinchStart=0}}
-canvas.addEventListener('pointerup',pointerEnd);canvas.addEventListener('pointercancel',pointerEnd);
-canvas.addEventListener('wheel',e=>{e.preventDefault();updateZoom(zoom+(e.deltaY<0?.06:-.06));autoSpin=false},{passive:false});
-function resize(){const r=canvas.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix()}
-new ResizeObserver(resize).observe(canvas);resize();build(model);
-let prev=0;function animate(t){requestAnimationFrame(animate);if(t-prev<32)return;prev=t;if(autoSpin&&!drag){root.rotation.y+=.0025;ring.rotation.z+=.001}renderer.render(scene,camera)}requestAnimationFrame(animate);
-</script></body></html>
+function loop(){draw();requestAnimationFrame(loop)}
+function chooseAt(x,y){const ps=positions();let nearest=null,dist=Infinity;for(const p of ps){const d=Math.hypot(x-p.x,y-p.y);if(d<Math.max(p.r+15,24)&&d<dist){nearest=p;dist=d}}if(nearest)selectBody(nearest.name)}
+canvas.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-lastX,dy=e.clientY-lastY;angle+=dx*.008;lastX=e.clientX;lastY=e.clientY});
+canvas.addEventListener('pointerup',e=>{if(Math.abs(e.clientX-lastX)<8&&Math.abs(e.clientY-lastY)<8){const r=canvas.getBoundingClientRect();chooseAt(e.clientX-r.left,e.clientY-r.top)}drag=false});
+canvas.addEventListener('pointercancel',()=>drag=false);
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.7,Math.min(1.35,zoom+(e.deltaY<0?.05:-.05)))},{passive:false});
+$('pauseBtn').addEventListener('click',()=>{paused=!paused;$('pauseBtn').textContent=paused?'Resume orbits':'Pause orbits';});
+$('resetBtn').addEventListener('click',()=>{angle=0;zoom=1;selectBody('Sun')});
+$('speedBtn').addEventListener('click',()=>{speed=speed===1?2:speed===2?.5:1;$('speedBtn').textContent='Orbit speed: '+speed+'×'});
+function status(t){$('gesture').textContent=t;$('status').innerHTML='SYSTEM READY<br>'+(running?'CAMERA ACTIVE':'CAMERA OFF')}
+function countFingers(lm){let n=0;for(const [tip,pip] of [[8,6],[12,10],[16,14],[20,18]])if(lm[tip].y<lm[pip].y-.015)n++;const d=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);if(d(lm[4],lm[0])>d(lm[3],lm[0])+.035)n++;return n}
+function gestureFrame(result){if(!result.landmarks?.length){status('SHOW HAND TO CAMERA');lastGesture='';return}const lm=result.landmarks[0],f=countFingers(lm),pinch=Math.hypot(lm[4].x-lm[8].x,lm[4].y-lm[8].y)<.065;const px=(1-lm[8].x)*W,py=lm[8].y*H;const now=performance.now();
+if(f===0){if(!closedSince)closedSince=now;if(now-closedSince>650&&!paused){paused=true;$('pauseBtn').textContent='Resume orbits'}status('FIST · ORBITS PAUSED');return}else closedSince=0;
+if(pinch&&!lastPinch){chooseAt(px,py);status('PINCH · SELECT');}else if(f===1){const ps=positions();const p=ps.reduce((a,b)=>Math.hypot(a.x-px,a.y-py)<Math.hypot(b.x-px,b.y-py)?a:b);if(now-lastDetect>240){selectBody(p.name);lastDetect=now}status('POINT · '+p.name.toUpperCase())}else if(f>=4){status('OPEN PALM · RELEASE')}else status(f+' FINGERS · TRACKING');
+lastPinch=pinch;
+}
+async function startCamera(){if(running){stopCamera();return}if(!navigator.mediaDevices?.getUserMedia){$('camlabel').textContent='HTTPS REQUIRED';$('gestureHelp').textContent='Camera access requires a secure HTTPS website, such as GitHub Pages, and a supported browser.';return}
+$('cameraBtn').disabled=true;$('camlabel').textContent='REQUESTING PERMISSION';try{
+stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:'user',width:{ideal:320},height:{ideal:240},frameRate:{ideal:15,max:20}}});video.srcObject=stream;await video.play();video.style.display='block';$('camplaceholder').style.display='none';$('camlabel').textContent='LOADING HAND TRACKER';
+const vision=await import('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/+esm');
+const fileset=await vision.FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm');
+landmarker=await vision.HandLandmarker.createFromOptions(fileset,{baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task',delegate:'CPU'},runningMode:'VIDEO',numHands:1,minHandDetectionConfidence:.55,minHandPresenceConfidence:.5,minTrackingConfidence:.5});
+running=true;$('cameraBtn').textContent='Turn camera off';$('cameraBtn').classList.remove('primary');$('camlabel').textContent='HAND TRACKING ACTIVE';$('mode').textContent='CAMERA + HAND TRACKING';$('gestureHelp').textContent='Point with one finger to focus the nearest planet. Pinch thumb and index finger to select a planet. A closed fist pauses the orbits; open your hand to resume manually if needed.';status('SHOW HAND TO CAMERA');cameraLoop();
+}catch(e){stopCamera();const denied=e?.name==='NotAllowedError'||e?.name==='PermissionDeniedError';$('camlabel').textContent=denied?'PERMISSION BLOCKED':'CAMERA ERROR';$('gestureHelp').textContent=denied?'Allow camera permission in your browser site settings, then try again.':'Could not start camera or hand tracker. Check your connection and open the HTTPS GitHub Pages website.';status(denied?'ALLOW CAMERA PERMISSION':'CAMERA UNAVAILABLE')}finally{$('cameraBtn').disabled=false}}
+function cameraLoop(){if(!running)return;raf=requestAnimationFrame(cameraLoop);if(busy||video.readyState<2||performance.now()-lastDetect<75)return;busy=true;try{const result=landmarker.detectForVideo(video,performance.now());gestureFrame(result)}catch(e){}finally{busy=false}}
+function stopCamera(){running=false;cancelAnimationFrame(raf);if(stream)stream.getTracks().forEach(t=>t.stop());stream=null;video.srcObject=null;video.style.display='none';$('camplaceholder').style.display='block';$('camlabel').textContent='CAMERA OFF';if(landmarker){landmarker.close();landmarker=null}$('cameraBtn').textContent='Enable camera';$('cameraBtn').classList.add('primary');$('mode').textContent='TOUCH MODE';status('CAMERA OFF')}
+$('cameraBtn').addEventListener('click',startCamera);window.addEventListener('pagehide',stopCamera);
+resize();new ResizeObserver(resize).observe(canvas);requestAnimationFrame(loop);
+</script>
+</body></html>

@@ -1,149 +1,91 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#050b12">
-<title>HANDLOOM // Holographic Workbench</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#030810">
+<title>HANDLOOM — Matter Lab</title>
 <style>
-:root{color-scheme:dark;--bg:#050b12;--panel:rgba(8,22,34,.82);--line:rgba(92,211,255,.28);--cyan:#67e5ff;--blue:#4b8dff;--gold:#ffca72;--muted:#7294a8;--white:#e6f8ff}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}body{overflow-x:hidden}button{font:inherit;cursor:pointer;color:inherit}
-.app{max-width:1120px;margin:auto;padding:15px 14px 30px}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:4px 2px 15px;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:10px}.logo{width:34px;height:34px;border:1px solid var(--cyan);color:var(--cyan);display:grid;place-items:center;transform:rotate(45deg);font-size:18px;box-shadow:0 0 16px #32cfff20}.logo span{transform:rotate(-45deg)}.brand h1{font-size:14px;letter-spacing:.2em;margin:0;font-weight:700}.brand p{font-size:9px;letter-spacing:.15em;color:var(--muted);margin:4px 0 0}.sys{font-size:9px;letter-spacing:.12em;color:var(--cyan);text-align:right}.sys b{display:block;font-size:10px;margin-bottom:4px}.live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#71f5c2;margin-right:5px;box-shadow:0 0 8px #71f5c2}
-.hero{padding:19px 2px 15px}.eyebrow{color:var(--cyan);font-size:9px;letter-spacing:.24em;text-transform:uppercase}.hero h2{font-size:clamp(24px,5.6vw,42px);line-height:1.02;letter-spacing:-.045em;font-weight:500;margin:9px 0 8px}.hero h2 span{color:var(--cyan);text-shadow:0 0 20px #3bdfff40}.hero p{font-size:12px;line-height:1.55;color:#91adbd;margin:0;max-width:560px}
-.lab{position:relative;isolation:isolate;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 46%,#10334a 0%,#081521 42%,#050b12 80%);border-radius:15px;overflow:hidden;min-height:340px;aspect-ratio:1.12/1;box-shadow:inset 0 0 50px #1aa5db0b,0 0 35px #00b9ff08}
-#scene{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
-.corner{position:absolute;width:22px;height:22px;border-color:var(--cyan);opacity:.75;pointer-events:none}.tl{top:10px;left:10px;border-top:1px solid;border-left:1px solid}.tr{top:10px;right:10px;border-top:1px solid;border-right:1px solid}.bl{bottom:10px;left:10px;border-bottom:1px solid;border-left:1px solid}.br{bottom:10px;right:10px;border-bottom:1px solid;border-right:1px solid}
-.hud{position:absolute;pointer-events:none;font-size:8px;letter-spacing:.12em;color:#8eb9cc;line-height:1.6}.hud b{font-weight:600;color:var(--cyan)}.hud-tl{top:17px;left:18px}.hud-tr{top:17px;right:18px;text-align:right}.hud-bl{bottom:16px;left:18px}.hud-br{bottom:16px;right:18px;text-align:right}
-.center-label{position:absolute;left:50%;top:78%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;white-space:nowrap;text-shadow:0 0 12px #4adfff}.center-label strong{font-size:9px;letter-spacing:.2em;font-weight:500;color:#d5f8ff}.center-label small{display:block;font-size:8px;color:#7ca9bd;letter-spacing:.14em;margin-top:4px}
-.toolbar{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}.tool{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px 5px;font-size:10px;letter-spacing:.05em;color:#9dc1d2}.tool span{display:block;font-size:16px;color:var(--cyan);margin-bottom:4px}.tool.active{border-color:var(--cyan);color:#e9fbff;background:#0c2b3b;box-shadow:inset 0 0 14px #34d9ff0d}
-.lower{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px}.panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.panel-head h3{font-size:10px;letter-spacing:.16em;font-weight:600;margin:0;color:#c8eaf7}.panel-head small{font-size:8px;color:var(--muted);letter-spacing:.1em}
-.elements{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.element{background:#091522;border:1px solid #24475a;border-radius:8px;padding:9px 2px 8px;text-align:center;min-width:0}.element.active{border-color:var(--gold);box-shadow:0 0 12px #ffc66b15}.element .sym{font-size:19px;color:var(--gold);line-height:1.1}.element b{font-size:8px;display:block;margin-top:6px;font-weight:500;color:#c7e3ee}.element small{font-size:7px;color:#688b9f;display:block;margin-top:3px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.action{border:1px solid var(--line);background:#0a1b29;border-radius:8px;padding:11px 8px;font-size:10px;letter-spacing:.08em}.action.primary{background:var(--cyan);color:#03101a;border-color:var(--cyan);font-weight:700}.action:active,.tool:active,.element:active{transform:scale(.98)}
-.readout{display:grid;grid-template-columns:1fr 1fr;gap:8px}.readout div{border-left:1px solid var(--line);padding-left:9px}.readout small{display:block;color:var(--muted);font-size:8px;letter-spacing:.12em}.readout strong{display:block;color:var(--cyan);font-size:12px;font-weight:500;margin-top:5px}
-.footer{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;gap:12px;color:#55798c;font-size:8px;letter-spacing:.08em;line-height:1.6}.footer b{color:#89b6c8;font-weight:500}
-@media(min-width:720px){.app{padding:22px 24px 35px}.hero{padding:24px 2px 18px}.lab{aspect-ratio:1.75/1;min-height:410px}.lower{grid-template-columns:1.15fr .85fr}.elements{gap:8px}.element{padding:13px 3px}.element .sym{font-size:23px}}
-@media(max-width:360px){.app{padding:12px 9px 22px}.brand h1{font-size:12px}.sys{font-size:8px}.toolbar{gap:5px}.tool{font-size:9px}.hud{font-size:7px}.lab{min-height:300px}}
+:root{color-scheme:dark;--cyan:#7deaff;--muted:#7295a9;--line:#1b5269;--panel:rgba(4,17,29,.88);--gold:#ffd58a}
+*{box-sizing:border-box}body{margin:0;background:#030810;color:#e7faff;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+.app{max-width:1150px;margin:auto;padding:14px}.top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #164052;padding:5px 2px 14px;gap:12px}.brand{display:flex;gap:10px;align-items:center}.logo{width:35px;height:35px;border:1px solid var(--cyan);display:grid;place-items:center;color:var(--cyan);font-size:22px;box-shadow:0 0 20px #29c8f333}.brand strong{font-size:13px;letter-spacing:.24em}.brand small{display:block;font-size:8px;letter-spacing:.17em;color:var(--muted);margin-top:4px}.sys{text-align:right;color:var(--cyan);font-size:9px;letter-spacing:.12em}.sys span{display:block;color:#82b0c5;margin-top:4px}
+.intro{padding:20px 2px 15px}.eyebrow{font-size:9px;color:var(--cyan);letter-spacing:.22em}.intro h1{font-size:clamp(28px,6vw,46px);font-weight:500;letter-spacing:-.05em;line-height:1.02;margin:8px 0}.intro h1 em{font-style:normal;color:var(--cyan);text-shadow:0 0 24px #52dfff44}.intro p{color:#8baabb;font-size:12px;line-height:1.6;max-width:580px;margin:0}
+.lab{position:relative;height:min(64vh,570px);min-height:350px;border:1px solid #1c5b73;border-radius:12px;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,#0b3147,#061421 48%,#02070d 85%);box-shadow:inset 0 0 55px #12a7d414}#view{width:100%;height:100%;display:block;touch-action:none}
+.hud{position:absolute;pointer-events:none;font:9px/1.8 ui-monospace,SFMono-Regular,monospace;letter-spacing:.08em;color:#7ba8bd}.hud b{color:var(--cyan);font-weight:500}.tl{top:13px;left:14px}.tr{top:13px;right:14px;text-align:right}.bl{bottom:13px;left:14px}.br{bottom:13px;right:14px;text-align:right}.crosshair{position:absolute;left:50%;top:50%;width:22px;height:22px;transform:translate(-50%,-50%);border:1px solid #73e9ff55;border-radius:50%;pointer-events:none}.crosshair:before,.crosshair:after{content:"";position:absolute;background:#73e9ff66}.crosshair:before{width:32px;height:1px;left:-6px;top:10px}.crosshair:after{height:32px;width:1px;left:10px;top:-6px}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}.btn{border:1px solid #1a536a;background:#071826;color:#b7dce9;padding:12px 5px;border-radius:8px;font-size:10px;letter-spacing:.06em}.btn span{display:block;font-size:16px;color:var(--cyan);margin-bottom:4px}.btn.active{border-color:var(--cyan);background:#0a2a3a;color:white}
+.panels{display:grid;grid-template-columns:1fr;gap:9px;margin-top:9px}.panel{background:var(--panel);border:1px solid #16475a;border-radius:10px;padding:13px}.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}.heading b{font-size:10px;letter-spacing:.15em;font-weight:600}.heading small{font-size:8px;color:var(--muted);letter-spacing:.1em}.objects{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.obj{border:1px solid #21485a;border-radius:7px;background:#07131f;padding:9px 2px;color:#bfe6f3;font-size:9px}.obj strong{display:block;font-size:20px;color:var(--gold);font-weight:400;margin-bottom:5px}.obj.active{border-color:var(--gold);box-shadow:0 0 13px #ffd58a18}.actionrow{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.action{padding:11px 7px;border-radius:7px;border:1px solid #1a536a;background:#071826;color:#b7dce9;font-size:10px;letter-spacing:.08em}.action.primary{background:var(--cyan);color:#03101a;font-weight:700;border-color:var(--cyan)}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.stats small{display:block;font-size:8px;color:var(--muted);letter-spacing:.12em}.stats strong{display:block;font-size:12px;color:var(--cyan);font-weight:500;margin-top:5px}.help{font-size:10px;color:#7fa2b4;line-height:1.6;margin-top:10px}.footer{border-top:1px solid #164052;margin-top:13px;padding:12px 2px 4px;display:flex;justify-content:space-between;gap:10px;font-size:8px;letter-spacing:.08em;line-height:1.7;color:#587f91}.footer b{color:#9ac8d9;font-weight:500}
+@media(min-width:760px){.app{padding:22px 24px}.panels{grid-template-columns:1.2fr .8fr}.lab{height:550px}.intro{padding-top:25px}.obj{padding:13px 3px}}
+@media(max-width:360px){.app{padding:10px}.lab{min-height:320px}.hud{font-size:7px}.btn{font-size:9px}.obj{font-size:8px}}
 </style>
 </head>
-<body>
-<main class="app">
-<header class="topbar">
-  <div class="brand"><div class="logo"><span>✳</span></div><div><h1>HANDLOOM</h1><p>SPATIAL CREATION SYSTEM</p></div></div>
-  <div class="sys"><b><i class="live-dot"></i>SYSTEM ONLINE</b>BUILD 02.6 // LOCAL MODE</div>
-</header>
-<section class="hero"><div class="eyebrow">Interactive matter lab / 01</div><h2>Imagine it.<br><span>Bring it into focus.</span></h2><p>A fingertip-controlled workbench for building, studying, and connecting geometric forms. Select a structure, then manipulate it on the canvas.</p></section>
-
-<section class="lab" id="lab">
-  <canvas id="scene" aria-label="Interactive holographic geometry workspace"></canvas>
-  <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-  <div class="hud hud-tl">WORKSPACE <b>H-01</b><br>PROJECTION: <b>SIMULATED</b></div>
-  <div class="hud hud-tr">TRACKING <b id="trackState">TOUCH / POINTER</b><br>FRAME <b id="frameState">STABLE</b></div>
-  <div class="hud hud-bl">OBJECT <b id="objectName">TRIANGULAR LATTICE</b><br>DRAG TO MOVE · PINCH/SCROLL TO SCALE</div>
-  <div class="hud hud-br">X <b id="xVal">00.0</b><br>Y <b id="yVal">00.0</b></div>
-  <div class="center-label"><strong id="centerTitle">STRUCTURE // 03</strong><small id="centerSub">GEOMETRY READY FOR INPUT</small></div>
-</section>
-
-<div class="toolbar" aria-label="Workbench tools">
-  <button class="tool active" data-tool="select"><span>⌖</span>SELECT</button>
-  <button class="tool" data-tool="rotate"><span>⟳</span>ROTATE</button>
-  <button class="tool" data-tool="scale"><span>⤢</span>SCALE</button>
-  <button class="tool" data-tool="connect"><span>⌁</span>CONNECT</button>
-</div>
-
-<div class="lower">
-<section class="panel">
-  <div class="panel-head"><h3>STRUCTURE LIBRARY</h3><small>SELECT AN OBJECT</small></div>
-  <div class="elements">
-    <button class="element" data-shape="atom"><div class="sym">◎</div><b>ORBITAL</b><small>FIELD 01</small></button>
-    <button class="element" data-shape="line"><div class="sym">╱</div><b>VECTOR</b><small>FIELD 02</small></button>
-    <button class="element active" data-shape="triangle"><div class="sym">△</div><b>TRIAD</b><small>FIELD 03</small></button>
-    <button class="element" data-shape="cube"><div class="sym">◇</div><b>LATTICE</b><small>FIELD 04</small></button>
-    <button class="element" data-shape="pentagon"><div class="sym">⬠</div><b>POLYGON</b><small>FIELD 05</small></button>
-  </div>
-  <div class="actions"><button class="action primary" id="newObject">＋ SYNTHESIZE</button><button class="action" id="reset">↺ RESET FIELD</button></div>
-</section>
-<section class="panel">
-  <div class="panel-head"><h3>LIVE READOUT</h3><small>SIMULATED DATA</small></div>
-  <div class="readout">
-    <div><small>ACTIVE STRUCTURE</small><strong id="readShape">TRIAD / 03</strong></div>
-    <div><small>FIELD STABILITY</small><strong>99.8%</strong></div>
-    <div><small>ROTATION</small><strong id="rotationRead">000°</strong></div>
-    <div><small>SCALE FACTOR</small><strong id="scaleRead">1.00×</strong></div>
-  </div>
-</section>
-</div>
-<footer class="footer"><div><b>HANDLOOM LABS</b><br>INSPIRED BY SCI-FI WORKBENCHES · NOT A REAL HOLOGRAM</div><div style="text-align:right">CAMERA OFF BY DEFAULT<br>NO VIDEO CAPTURE OR UPLOAD</div></footer>
+<body><main class="app">
+<header class="top"><div class="brand"><div class="logo">✳</div><div><strong>HANDLOOM</strong><small>SPATIAL MATTER LAB / 03</small></div></div><div class="sys">● SYSTEM ONLINE<span>3D ENGINE // READY</span></div></header>
+<section class="intro"><div class="eyebrow">EXPERIMENTAL WORKSPACE · 001</div><h1>Discover the shape<br>of <em>what comes next.</em></h1><p>A real-time 3D workbench inspired by cinematic science labs. Drag to orbit the structure, pinch to zoom, and switch between atomic and geometric models.</p></section>
+<section class="lab"><canvas id="view"></canvas><div class="crosshair"></div><div class="hud tl">MATTER SCAN <b>ACTIVE</b><br>RENDER MODE <b>REAL-TIME 3D</b></div><div class="hud tr">MODEL <b id="modelHud">ATOM / 01</b><br>INPUT <b>TOUCH + DRAG</b></div><div class="hud bl">ROTATION <b id="rotHud">0° / 0°</b><br>ZOOM <b id="zoomHud">1.0×</b></div><div class="hud br">FIELD STATUS<br><b id="statusHud">STABLE</b></div></section>
+<div class="controls"><button class="btn active" data-mode="orbit"><span>◎</span>ORBIT VIEW</button><button class="btn" data-mode="inspect"><span>⌖</span>INSPECT</button><button class="btn" data-mode="assemble"><span>⌘</span>ASSEMBLE</button></div>
+<div class="panels"><section class="panel"><div class="heading"><b>MODEL CHAMBER</b><small>CHOOSE A STRUCTURE</small></div><div class="objects">
+<button class="obj active" data-model="atom"><strong>◎</strong>ATOM</button><button class="obj" data-model="molecule"><strong>⌬</strong>MOLECULE</button><button class="obj" data-model="tetra"><strong>△</strong>TETRAHEDRON</button><button class="obj" data-model="cube"><strong>◇</strong>CUBE</button><button class="obj" data-model="torus"><strong>◉</strong>TORUS</button></div><div class="actionrow"><button class="action primary" id="synth">＋ SYNTHESIZE MODEL</button><button class="action" id="reset">↺ RESET VIEW</button></div><div class="help">Touch and drag the model to rotate it. Pinch with two fingers or use the zoom controls below. The scene is rendered in 3D; camera permission is not needed.</div></section>
+<section class="panel"><div class="heading"><b>LIVE TELEMETRY</b><small>VISUALIZATION DATA</small></div><div class="stats"><div><small>ACTIVE MODEL</small><strong id="modelRead">ATOM / 01</strong></div><div><small>FIELD INTEGRITY</small><strong>99.8%</strong></div><div><small>ROTATION</small><strong id="rotRead">000°</strong></div><div><small>ZOOM LEVEL</small><strong id="zoomRead">1.0×</strong></div></div><div class="actionrow"><button class="action" id="zoomOut">− ZOOM OUT</button><button class="action" id="zoomIn">＋ ZOOM IN</button></div></section></div>
+<footer class="footer"><div><b>HANDLOOM // LAB SYSTEMS</b><br>FICTIONAL SCI-FI INTERFACE · ACTUAL 3D SCENE</div><div style="text-align:right">NO CAMERA REQUIRED<br>THREE.JS WEBGL</div></footer>
 </main>
-<script>
-(() => {
- const canvas=document.getElementById('scene'),ctx=canvas.getContext('2d');
- const $=id=>document.getElementById(id);
- const state={shape:'triangle',tool:'select',x:.5,y:.45,rotation:0,scale:1,drag:false,lastX:0,lastY:0,objects:[],pulse:0};
- let w=0,h=0,dpr=1,raf=0,last=0;
- const cyan='#67e5ff',gold='#ffca72';
- function resize(){const r=canvas.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,1.5);w=r.width;h=r.height;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw()}
- function point(x,y){return{x:x*w,y:y*h}}
- function polygon(n,cx,cy,r,rot=-Math.PI/2){const pts=[];for(let i=0;i<n;i++){const a=rot+i*2*Math.PI/n;pts.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r])}return pts}
- function line(a,b,alpha=1){ctx.globalAlpha=alpha;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();ctx.globalAlpha=1}
- function drawShape(){
-   const cx=state.x*w,cy=state.y*h,rad=Math.min(w,h)*.19*state.scale;
-   ctx.save();ctx.translate(cx,cy);ctx.rotate(state.rotation*Math.PI/180);
-   ctx.strokeStyle=cyan;ctx.fillStyle=cyan;ctx.lineWidth=1.25;ctx.shadowColor=cyan;ctx.shadowBlur=12;
-   if(state.shape==='line'){line([-rad*1.3,0],[rad*1.3,0]);ctx.beginPath();ctx.arc(0,0,rad*.18,0,Math.PI*2);ctx.stroke()}
-   else if(state.shape==='atom'){
-     for(let i=0;i<3;i++){ctx.save();ctx.rotate(i*Math.PI/3);ctx.beginPath();ctx.ellipse(0,0,rad*1.35,rad*.48,0,0,Math.PI*2);ctx.stroke();ctx.restore()}
-     ctx.beginPath();ctx.arc(0,0,4,0,Math.PI*2);ctx.fill();
-   } else {
-     const n=state.shape==='triangle'?3:state.shape==='cube'?4:5;
-     const pts=polygon(n,0,0,rad,state.shape==='cube'?-Math.PI/4:-Math.PI/2);
-     ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.stroke();
-     if(state.shape==='cube'){
-       const back=pts.map(p=>[p[0]+rad*.36,p[1]-rad*.34]);
-       ctx.beginPath();back.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.stroke();
-       pts.forEach((p,i)=>line(p,back[i],.8));
-     } else {
-       pts.forEach((p,i)=>{line(p,[p[0]*-.25,p[1]*-.25],.42);ctx.beginPath();ctx.arc(p[0],p[1],2.3,0,Math.PI*2);ctx.fill()});
-     }
-   }
-   // Orbit rings and aiming reticle.
-   ctx.shadowBlur=0;ctx.strokeStyle='rgba(103,229,255,.23)';ctx.setLineDash([3,7]);ctx.beginPath();ctx.arc(0,0,rad*1.65,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
-   ctx.strokeStyle='rgba(103,229,255,.48)';ctx.beginPath();ctx.moveTo(-rad*1.85,0);ctx.lineTo(-rad*1.55,0);ctx.moveTo(rad*1.55,0);ctx.lineTo(rad*1.85,0);ctx.moveTo(0,-rad*1.85);ctx.lineTo(0,-rad*1.55);ctx.moveTo(0,rad*1.55);ctx.lineTo(0,rad*1.85);ctx.stroke();
-   ctx.restore();
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+const canvas=document.querySelector('#view');
+const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x04101a,.055);
+const camera=new THREE.PerspectiveCamera(42,1,.1,100);camera.position.set(0,0,8);
+const renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:true,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.35));renderer.setClearColor(0x000000,0);
+const cyan=0x67eaff,gold=0xffd58a;
+scene.add(new THREE.AmbientLight(0x5a9ab5,1.6));
+const light=new THREE.PointLight(0x46dfff,30,20);light.position.set(2,3,4);scene.add(light);
+const root=new THREE.Group();scene.add(root);
+const grid=new THREE.GridHelper(18,36,0x164a61,0x0b2636);grid.position.y=-2.15;grid.material.transparent=true;grid.material.opacity=.55;scene.add(grid);
+const ringMat=new THREE.MeshBasicMaterial({color:cyan,transparent:true,opacity:.22,wireframe:true});
+const ring=new THREE.Mesh(new THREE.TorusGeometry(2.55,.006,4,100),ringMat);ring.rotation.x=Math.PI/2.25;scene.add(ring);
+let model='atom',mode='orbit',spin=0,zoom=1,drag=false,lastX=0,lastY=0,ptrs=new Map(),pinchStart=0,modelGroup=null,autoSpin=true;
+const models={atom:'ATOM / 01',molecule:'MOLECULE / 02',tetra:'TETRAHEDRON / 03',cube:'CUBE / 04',torus:'TORUS / 05'};
+function mat(color=cyan,opacity=1){return new THREE.MeshBasicMaterial({color,wireframe:true,transparent:opacity<1,opacity})}
+function lineBetween(parent,a,b,material=mat(cyan,.8)){const g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a),new THREE.Vector3(...b)]);parent.add(new THREE.Line(g,material))}
+function addAtom(parent,pos,r=.16,color=gold){const m=new THREE.Mesh(new THREE.IcosahedronGeometry(r,1),new THREE.MeshBasicMaterial({color,wireframe:true}));m.position.set(...pos);parent.add(m);const core=new THREE.Mesh(new THREE.SphereGeometry(r*.22,8,6),new THREE.MeshBasicMaterial({color}));core.position.copy(m.position);parent.add(core)}
+function build(which){
+ if(modelGroup)root.remove(modelGroup);modelGroup=new THREE.Group();root.add(modelGroup);
+ if(which==='atom'){
+  addAtom(modelGroup,[0,0,0],.3,gold);
+  for(let i=0;i<3;i++){const orbit=new THREE.Mesh(new THREE.TorusGeometry(1.35,.009,4,90),mat(cyan,.85));orbit.rotation.set(i*.85,i*1.04,i*.5);modelGroup.add(orbit);const e=new THREE.Mesh(new THREE.IcosahedronGeometry(.085,1),new THREE.MeshBasicMaterial({color:gold}));e.position.set(Math.cos(i*2)*1.35,Math.sin(i*2)*.7,Math.sin(i*2)*.85);orbit.add(e)}
+ }else if(which==='molecule'){
+  const pts=[[-1.3,0,0],[-.55,.65,0],[.35,.65,.15],[1.15,0,0],[.35,-.65,-.15],[-.55,-.65,0]];
+  pts.forEach((p,i)=>addAtom(modelGroup,p,i%2?.17:.23,i%2?cyan:gold));
+  [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[1,5],[2,4]].forEach(([a,b])=>lineBetween(modelGroup,pts[a],pts[b]));
+ }else if(which==='tetra'){
+  const pts=[[0,1.35,0],[-1.15,-.7, .8],[1.15,-.7,.8],[0,-.7,-1.15]];
+  pts.forEach(p=>addAtom(modelGroup,p,.12,gold));
+  [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]].forEach(([a,b])=>lineBetween(modelGroup,pts[a],pts[b]));
+ }else if(which==='cube'){
+  const geo=new THREE.EdgesGeometry(new THREE.BoxGeometry(2.15,2.15,2.15));modelGroup.add(new THREE.LineSegments(geo,mat(cyan)));
+  const inner=new THREE.Mesh(new THREE.OctahedronGeometry(1.05,0),mat(gold,.8));modelGroup.add(inner);
+ }else{
+  const tor=new THREE.Mesh(new THREE.TorusKnotGeometry(.85,.28,90,8,2,3),mat(cyan));modelGroup.add(tor);
+  const inner=new THREE.Mesh(new THREE.TorusGeometry(1.6,.008,4,90),mat(gold,.55));inner.rotation.x=1;modelGroup.add(inner);
  }
- function draw(){
-   ctx.clearRect(0,0,w,h);ctx.fillStyle='#06111c';ctx.fillRect(0,0,w,h);
-   const glow=ctx.createRadialGradient(w*.5,h*.45,5,w*.5,h*.45,Math.max(w,h)*.65);glow.addColorStop(0,'rgba(14,73,100,.36)');glow.addColorStop(1,'rgba(2,8,14,0)');ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
-   ctx.strokeStyle='rgba(70,177,213,.10)';ctx.lineWidth=1;const gap=28;ctx.beginPath();for(let x=0;x<w;x+=gap){ctx.moveTo(x,0);ctx.lineTo(x,h)}for(let y=0;y<h;y+=gap){ctx.moveTo(0,y);ctx.lineTo(w,y)}ctx.stroke();
-   // Horizon rings, restrained to keep the phone cool.
-   ctx.strokeStyle='rgba(67,191,229,.12)';for(let i=0;i<4;i++){ctx.beginPath();ctx.ellipse(w/2,h*.52,Math.min(w,h)*(.17+i*.095),Math.min(w,h)*(.045+i*.027),0,0,Math.PI*2);ctx.stroke()}
-   drawShape();
-   ctx.fillStyle=gold;ctx.shadowColor=gold;ctx.shadowBlur=8;ctx.beginPath();ctx.arc(state.x*w,state.y*h,2.2,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
-   $('xVal').textContent=(state.x*100).toFixed(1).padStart(4,'0');$('yVal').textContent=(state.y*100).toFixed(1).padStart(4,'0');
- }
- function setShape(shape){
-   state.shape=shape;document.querySelectorAll('.element').forEach(b=>b.classList.toggle('active',b.dataset.shape===shape));
-   const names={atom:['ORBITAL','ORBITAL FIELD / 01'],line:['VECTOR','LINEAR VECTOR / 02'],triangle:['TRIAD','TRIANGULAR LATTICE / 03'],cube:['LATTICE','CUBIC LATTICE / 04'],pentagon:['POLYGON','PENTAGONAL FIELD / 05']};
-   $('objectName').textContent=names[shape][1];$('centerTitle').textContent='STRUCTURE // 0'+({atom:1,line:2,triangle:3,cube:4,pentagon:5}[shape]);$('centerSub').textContent='GEOMETRY READY FOR INPUT';$('readShape').textContent=names[shape][0]+' / 0'+({atom:1,line:2,triangle:3,cube:4,pentagon:5}[shape]);draw();
- }
- document.querySelectorAll('.element').forEach(b=>b.addEventListener('click',()=>setShape(b.dataset.shape)));
- document.querySelectorAll('.tool').forEach(b=>b.addEventListener('click',()=>{state.tool=b.dataset.tool;document.querySelectorAll('.tool').forEach(t=>t.classList.toggle('active',t===b));$('trackState').textContent=state.tool.toUpperCase()+' / POINTER';$('centerSub').textContent=state.tool==='connect'?'SELECTED FIELD READY TO CONNECT':state.tool==='rotate'?'DRAG HORIZONTALLY TO ROTATE':state.tool==='scale'?'SCROLL OR USE +/- TO SCALE':'DRAG TO REPOSITION';}));
- function down(e){const r=canvas.getBoundingClientRect();state.drag=true;state.lastX=e.clientX-r.left;state.lastY=e.clientY-r.top;canvas.setPointerCapture?.(e.pointerId)}
- function move(e){if(!state.drag)return;const r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,dx=x-state.lastX,dy=y-state.lastY;state.lastX=x;state.lastY=y;
-   if(state.tool==='rotate'){state.rotation=(state.rotation+dx*.8+360)%360;$('rotationRead').textContent=String(Math.round(state.rotation)).padStart(3,'0')+'°'}
-   else if(state.tool==='scale'){state.scale=Math.max(.45,Math.min(1.8,state.scale+dx*.003));$('scaleRead').textContent=state.scale.toFixed(2)+'×'}
-   else if(state.tool==='connect'){state.rotation=(state.rotation+dx*.2+360)%360}
-   else{state.x=Math.max(.12,Math.min(.88,state.x+dx/w));state.y=Math.max(.16,Math.min(.78,state.y+dy/h))}
-   draw();
- }
- function up(){state.drag=false}
- canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);
- canvas.addEventListener('wheel',e=>{e.preventDefault();state.scale=Math.max(.45,Math.min(1.8,state.scale+(e.deltaY<0?.05:-.05)));$('scaleRead').textContent=state.scale.toFixed(2)+'×';draw()},{passive:false});
- $('newObject').addEventListener('click',()=>{state.x=.5+(Math.random()-.5)*.12;state.y=.43+(Math.random()-.5)*.12;state.rotation=0;state.scale=1;$('rotationRead').textContent='000°';$('scaleRead').textContent='1.00×';$('frameState').textContent='SYNTHESIZED';setTimeout(()=>$('frameState').textContent='STABLE',900);draw()});
- $('reset').addEventListener('click',()=>{state.x=.5;state.y=.45;state.rotation=0;state.scale=1;$('rotationRead').textContent='000°';$('scaleRead').textContent='1.00×';$('frameState').textContent='STABLE';draw()});
- new ResizeObserver(resize).observe(canvas);resize();
-})();
-</script>
-</body>
-</html>
+ document.querySelectorAll('.obj').forEach(b=>b.classList.toggle('active',b.dataset.model===which));
+ document.querySelector('#modelHud').textContent=models[which];document.querySelector('#modelRead').textContent=models[which];document.querySelector('#statusHud').textContent='MODEL SYNTHESIZED';
+ setTimeout(()=>document.querySelector('#statusHud').textContent='STABLE',650);
+}
+function updateZoom(v){zoom=Math.max(.65,Math.min(1.8,v));camera.position.z=8/zoom;document.querySelector('#zoomHud').textContent=zoom.toFixed(1)+'×';document.querySelector('#zoomRead').textContent=zoom.toFixed(1)+'×'}
+document.querySelectorAll('.obj').forEach(b=>b.addEventListener('click',()=>{model=b.dataset.model;build(model)}));
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('active',x===b));autoSpin=mode==='orbit';document.querySelector('#statusHud').textContent=mode.toUpperCase()+' MODE'}));
+document.querySelector('#synth').addEventListener('click',()=>{build(model);root.rotation.set(0,0,0);spin=0;document.querySelector('#rotRead').textContent='000°';document.querySelector('#rotHud').textContent='0° / 0°'});
+document.querySelector('#reset').addEventListener('click',()=>{root.rotation.set(0,0,0);spin=0;updateZoom(1);autoSpin=mode==='orbit';});
+document.querySelector('#zoomIn').addEventListener('click',()=>updateZoom(zoom+.12));document.querySelector('#zoomOut').addEventListener('click',()=>updateZoom(zoom-.12));
+canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});drag=true;lastX=e.clientX;lastY=e.clientY;pinchStart=0;autoSpin=false});
+canvas.addEventListener('pointermove',e=>{if(!ptrs.has(e.pointerId))return;const prev=ptrs.get(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(ptrs.size>=2){const arr=[...ptrs.values()],dist=Math.hypot(arr[0].x-arr[1].x,arr[0].y-arr[1].y);if(pinchStart)updateZoom(zoom+(dist-pinchStart)*.003);pinchStart=dist;return}
+ const dx=e.clientX-lastX,dy=e.clientY-lastY;lastX=e.clientX;lastY=e.clientY;
+ if(mode==='rotate'||mode==='orbit'||mode==='inspect'){root.rotation.y+=dx*.009;root.rotation.x+=dy*.009;spin=(spin+Math.abs(dx)*.5)%360;document.querySelector('#rotRead').textContent=String(Math.round(spin)).padStart(3,'0')+'°';document.querySelector('#rotHud').textContent=Math.round(root.rotation.y*57.3)+'° / '+Math.round(root.rotation.x*57.3)+'°'}
+ else {root.position.x=Math.max(-1.5,Math.min(1.5,root.position.x+dx*.006));root.position.y=Math.max(-1.2,Math.min(1.2,root.position.y-dy*.006))}
+});
+function pointerEnd(e){ptrs.delete(e.pointerId);if(!ptrs.size){drag=false;pinchStart=0}}
+canvas.addEventListener('pointerup',pointerEnd);canvas.addEventListener('pointercancel',pointerEnd);
+canvas.addEventListener('wheel',e=>{e.preventDefault();updateZoom(zoom+(e.deltaY<0?.06:-.06));autoSpin=false},{passive:false});
+function resize(){const r=canvas.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix()}
+new ResizeObserver(resize).observe(canvas);resize();build(model);
+let prev=0;function animate(t){requestAnimationFrame(animate);if(t-prev<32)return;prev=t;if(autoSpin&&!drag){root.rotation.y+=.0025;ring.rotation.z+=.001}renderer.render(scene,camera)}requestAnimationFrame(animate);
+</script></body></html>
